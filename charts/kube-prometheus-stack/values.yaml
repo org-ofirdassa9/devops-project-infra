@@ -1,0 +1,13 @@
+grafana:
+  persistence:
+    enabled: true
+    size: 20Gi
+    accessModes:
+      - ReadWriteOnce
+  securityContext:
+    fsGroup: 472
+    runAsUser: 472
+    runAsGroup: 472
+  serviceAccount:
+    annotations: 
+      eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/role-eks-eu-west-1-production-hms-grafana
