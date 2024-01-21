@@ -1,0 +1,13 @@
+version: 0.1
+resource_usage:
+  ##
+  ## The following usage values apply to individual resources and override any value defined in the resource_type_default_usage section.
+  ## All values are commented-out, you can uncomment resources and customize as needed.
+  ##
+  module.eks.module.eks_managed_node_group["one"].aws_eks_node_group.this[0]:
+    instances: 2 # Number of instances in the EKS node group.
+    capacity_type: SPOT
+  aws_lb.this:
+    rule_evaluations: 10 # The product of number of rules processed by the load balancer and the request rate.
+  aws_wafv2_web_acl.this:
+    managed_rule_group_rules: 6 # Total number of Managed Rule Group rules used by the Web ACL.

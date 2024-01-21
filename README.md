@@ -74,11 +74,11 @@ Generated cost analysis by Infracost:
 ┃ org-ofirdassa9/devops-project-i...t/production/eu-west-1/aws-acm ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...t/production/eu-west-1/aws-alb ┃ $18          ┃
 ┃ org-ofirdassa9/devops-project-i...hms/aws-alb-ingress-controller ┃ $0.00        ┃
-┃ org-ofirdassa9/devops-project-i...oduction/eu-west-1/eks-hms/eks ┃ $106         ┃
+┃ org-ofirdassa9/devops-project-i...oduction/eu-west-1/eks-hms/eks ┃ $137         ┃
 ┃ org-ofirdassa9/devops-project-i...n/eu-west-1/eks-hms/monitoring ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...duction/eu-west-1/postgres-rds ┃ $17          ┃
 ┃ org-ofirdassa9/devops-project-i...grunt/production/eu-west-1/vpc ┃ $35          ┃
-┃ org-ofirdassa9/devops-project-i...grunt/production/eu-west-1/waf ┃ $5           ┃
+┃ org-ofirdassa9/devops-project-i...grunt/production/eu-west-1/waf ┃ $11          ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━┛
- OVERALL TOTAL                                                        $181.00 
+ OVERALL TOTAL                                                        $218.00 
 ```
