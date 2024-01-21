@@ -6,7 +6,8 @@ resource "aws_lb" "this" {
   subnets            = var.subnet_ids
 
   enable_deletion_protection = false
-
+  drop_invalid_header_fields = true
+  
   tags = {
     Terraform = "True"
   }
