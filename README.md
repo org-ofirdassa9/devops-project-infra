@@ -28,7 +28,7 @@ terragrunt run-all apply
 
 After Terraform setup, perform the following steps:
 
-1. Take the ARN of the IAM role for the grafana service-account `(role-eks-<region>-<environment>-hms-grafana)`.
+1. Take the ARN of the IAM role for the grafana service-account (role-<cluster_name>-grafana) to `charts/kube-prometheus-stack/values.yaml`.
 
 2. Install the Helm chart for Prometheus and Grafana:
 
@@ -36,7 +36,7 @@ After Terraform setup, perform the following steps:
    helm upgrade -i prometheus-grafana prometheus-community/kube-prometheus-stack -n monitoring --create-namespace -f charts/kube-prometheus-stack/values.yaml
    ```
 
-3. Take the monitoring target group ARNs from `kube-files/monitoring.yaml` and apply it:
+3. Take the monitoring target group ARNs to `kube-files/monitoring.yaml` and apply it:
 
    ```bash
    kubectl apply -f kube-files/monitoring.yaml
@@ -48,7 +48,7 @@ After Terraform setup, perform the following steps:
    helm upgrade -i loki -n monitoring grafana/loki-stack --set loki.image.tag=2.9.3
    ```
 
-5. Grafana Credentials:
+5. Log in to Grafana:
 
    - Username: admin
    - Password: prom-operator
