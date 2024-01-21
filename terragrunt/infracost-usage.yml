@@ -1,9 +1,5 @@
 version: 0.1
 resource_usage:
-  ##
-  ## The following usage values apply to individual resources and override any value defined in the resource_type_default_usage section.
-  ## All values are commented-out, you can uncomment resources and customize as needed.
-  ##
   module.eks.module.eks_managed_node_group["one"].aws_eks_node_group.this[0]:
     instances: 2 # Number of instances in the EKS node group.
     capacity_type: SPOT
