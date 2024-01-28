@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "hms-client.fullname" . }}
+  name: {{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}
   labels:
-    {{- include "hms-client.labels" . | nindent 4 }}
+    {{- include "org-ofirdassa9_devops-project-infra_hms-client.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "hms-client.fullname" . }}
+    name: {{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

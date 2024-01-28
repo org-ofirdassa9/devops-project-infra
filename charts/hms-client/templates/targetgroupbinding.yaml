@@ -1,9 +1,9 @@
 apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
 metadata:
-  name: {{ include "hms-client.fullname" . }}
+  name: {{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}
 spec:
   serviceRef:
-    name: {{ include "hms-client.fullname" . }}
+    name: {{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}
     port: 80
   targetGroupARN: {{ .Values.targetgroupbinding.targetgrouparn }}
