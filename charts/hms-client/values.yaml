@@ -50,7 +50,7 @@ service:
   port: 80
 
 targetgroupbinding:
-  targetgrouparn: "arn:aws:elasticloadbalancing:eu-west-1:123456789012:targetgroup/tg-production-fallback/83f889e8069f3d82"
+  targetgrouparn: ""
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
