@@ -47,5 +47,10 @@ jobs:
           cd charts
           VERSION_NUM=0.3.${{github.run_number}}
           helm package hms-client --version $VERSION_NUM
+          whoami
+          pwd
+          ls -la
           mv hms-client-$VERSION_NUM.tgz $REPOSITORY-$VERSION_NUM.tgz
+          pwd
+          ls -la
           helm push $REPOSITORY-$VERSION_NUM.tgz oci://$REGISTRY
