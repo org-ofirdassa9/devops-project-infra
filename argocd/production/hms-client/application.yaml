@@ -2,15 +2,23 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: hms-client
-  namespace: argocd
 spec:
-  project: default
-  source:
-    chart: hms-client
-    repoURL: oci://476209828715.dkr.ecr.eu-west-1.amazonaws.com
-    targetRevision: 0.3.6
-    helm:
-      releaseName: hms-client
   destination:
-    server: "https://kubernetes.default.svc"
+    name: ''
     namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/hms-client
+    repoURL: 'https://github.com/org-ofirdassa9/devops-project-infra.git'
+    targetRevision: master
+    helm:
+      valueFiles:
+        - values.yaml
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

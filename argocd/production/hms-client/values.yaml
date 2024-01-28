@@ -1,0 +1,2 @@
+targetgroupbinding:
+  targetgrouparn: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-fallback/c6dbdffc87185f45"
