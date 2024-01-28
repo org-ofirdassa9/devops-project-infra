@@ -1,0 +1,32 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  serviceRef:
+    name: prometheus-grafana-kube-pr-alertmanager
+    port: 9093
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-alert-manager/555c7306f6200ecf"
+---
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  serviceRef:
+    name: prometheus-grafana
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-grafana/813b51675021ba02"
+---
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: prometheus
+  namespace: monitoring
+spec:
+  serviceRef:
+    name: prometheus-grafana-kube-pr-prometheus
+    port: 9090
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-prometheus/beb0189e8afa8dbb"
