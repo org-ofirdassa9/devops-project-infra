@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}-test-connection"
+  name: "{{ include "hms-client.fullname" . }}-test-connection"
   labels:
-    {{- include "org-ofirdassa9_devops-project-infra_hms-client.labels" . | nindent 4 }}
+    {{- include "hms-client.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "org-ofirdassa9_devops-project-infra_hms-client.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "hms-client.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
