@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'master'
-      
+
 jobs:
         
   hms-client:
@@ -45,7 +45,7 @@ jobs:
 
         run: |
           cd charts
-          helm package hms-client
-          VERSION_NUM=$(cat hms-client/Chart.yaml | grep 'version:' | awk '{print $2}')
-          echo $REPOSITORY-$VERSION_NUM.tgz
+          VERSION_NUM=0.3.${{github.run_number}}
+          helm package hms-client --version $VERSION_NUM
+          mv hms-client-$VERSION_NUM.tgz $REPOSITORY-$VERSION_NUM.tgz
           helm push $REPOSITORY-$VERSION_NUM.tgz oci://$REGISTRY
