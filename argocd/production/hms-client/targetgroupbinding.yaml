@@ -2,6 +2,7 @@ apiVersion: elbv2.k8s.aws/v1beta1
 kind: TargetGroupBinding
 metadata:
   name: tgb-hms-client
+  namespace: hms
 spec:
   serviceRef:
     name: svc-hms-client
