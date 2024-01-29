@@ -3,11 +3,12 @@ kind: Service
 metadata:
   name: svc-hms-client
 spec:
+  ports:
+      - port: 80
+        targetPort: http
+        protocol: TCP
+        name: http
   selector:
     app: hms-client
   type: ClusterIP
-  ports:
-    - port: 80
-      targetPort: http
-      protocol: TCP
-      name: http
+  
