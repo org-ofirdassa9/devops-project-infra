@@ -8,4 +8,4 @@ spec:
   serviceRef:
     name: argocd-server
     port: 80
-  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-argocd/2381f7153e6cbeb8"
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-argocd/8213ed4cf63f7695"
