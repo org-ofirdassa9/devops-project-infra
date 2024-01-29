@@ -10,7 +10,7 @@ spec:
     path: argocd/production/hms-client
     targetRevision: master
   destination:
-    namespace: default
+    namespace: hms
     server: 'https://kubernetes.default.svc'
   syncPolicy:
     automated:
