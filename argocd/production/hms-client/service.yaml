@@ -4,9 +4,9 @@ metadata:
   name: svc-hms-client
 spec:
   ports:
-      - port: 80
-        targetPort: 80
-        protocol: TCP
+    - protocol: TCP
+      port: 80
+      targetPort: 80
   selector:
     app: hms-client
   type: ClusterIP
