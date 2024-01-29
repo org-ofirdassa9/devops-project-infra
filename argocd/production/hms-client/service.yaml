@@ -4,7 +4,6 @@ metadata:
   name: svc-hms-client
   labels:
     app: hms-client
-    tier: frontend
 spec:
   selector:
     app: hms-client
@@ -14,3 +13,4 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      
