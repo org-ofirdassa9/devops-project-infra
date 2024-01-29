@@ -1,10 +1,9 @@
-# apiVersion: elbv2.k8s.aws/v1beta1
-# kind: TargetGroupBinding
-# metadata:
-#   name: tgb-hms-client
-#   namespace: default
-# spec:
-#   serviceRef:
-#     name: svc-hms-client
-#     port: 80
-#   targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-fallback/792cbf4948aa4fc2"
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: hms-client
+spec:
+  serviceRef:
+    name: hms-client
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-fallback/792cbf4948aa4fc2"
