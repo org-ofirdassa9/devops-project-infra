@@ -5,5 +5,5 @@ metadata:
 spec:
   serviceRef:
     name: svc-users-service
-    port: 80
+    port: 8000
   targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-users-service/2021d79ef6c3211a"
