@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: users-service
+  template:
+    metadata:
+      labels:
+        app: users-service
+    spec:
+      containers:
+      - name: users-service
+        image: 476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:users-service-latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
