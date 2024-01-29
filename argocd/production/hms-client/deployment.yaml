@@ -4,7 +4,13 @@ metadata:
   name: hms-client
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: hms-client
   template:
+    metadata:
+      labels:
+        app: hms-client
     spec:
       containers:
       - name: hms-client
