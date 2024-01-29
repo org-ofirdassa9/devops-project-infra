@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/org-ofirdassa9/devops-project-infra.git
     targetRevision: master
-    path: argocd/production/hms-client
+    path: argocd/production
   destination:
     server: https://kubernetes.default.svc
     namespace: hms
