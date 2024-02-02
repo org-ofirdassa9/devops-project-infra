@@ -18,7 +18,7 @@ spec:
         image: 476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:users-service-latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8000
         volumeMounts:
         - name: secret-users-service
           mountPath: "/etc/secrets"
