@@ -12,25 +12,26 @@ spec:
       labels:
         app: users-service
     spec:
+      serviceAccountName: sa-users-service
       containers:
       - name: users-service
         image: 476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:users-service-latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8000
+        - containerPort: 80
         volumeMounts:
-          - name: secret-users-service
-            mountPath: /etc/secret-users-service
-            readOnly: true
+        - name: secret-users-service
+          mountPath: "/etc/secrets"
+          readOnly: true
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: secret-users-service
       initContainers:
         - name: "users-service-init"
           image: "476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:init-latest"
           imagePullPolicy: Always
           volumeMounts:
-          - name: secret-users-service
-            mountPath: /etc/secret-users-service
-            readOnly: true
-      volumes:
-      - name: secret-users-service
-        secret:
-          secretName: secret-users-service
+        - name: secret-users-service
+          mountPath: "/etc/secrets"
+          readOnly: true
