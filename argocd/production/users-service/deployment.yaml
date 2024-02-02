@@ -18,3 +18,19 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
+        volumeMounts:
+          - name: secret-users-service
+            mountPath: /etc/secret-users-service
+            readOnly: true
+      initContainers:
+        - name: "users-service-init"
+          image: "476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:init-latest"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+          - name: secret-users-service
+            mountPath: /etc/secret-users-service
+            readOnly: true
+      volumes:
+      - name: secret-users-service
+        secret:
+          secretName: secret-users-service
