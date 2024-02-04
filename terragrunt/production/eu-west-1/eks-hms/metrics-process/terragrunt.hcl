@@ -32,7 +32,6 @@ inputs = {
     vpc_id = dependency.vpc.outputs.vpc_id
     https_listener_arn = dependency.aws-alb.outputs.https_listener_arn
     service_name = "metrics-process"
-    // rule_priority = 1
     health_check_config = {
       path                = "/metrics_process/docs"
       port                = 8000
