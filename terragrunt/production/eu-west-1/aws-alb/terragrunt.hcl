@@ -38,6 +38,6 @@ inputs =  {
   vpc_id = dependency.vpc.outputs.vpc_id
   subnet_ids = dependency.vpc.outputs.public_subnet_ids
   certificate_arn = dependency.acm.outputs.certificate_arn
-  domains_name_list = ["example.com"]
+  domains_name_list = ["example.com", "prometheus.example.com", "grafana.example.com", "aletmanager.example.com", "argocd.example.com"]
   hosted_zone_id = dependency.acm.outputs.hosted_zone_id
 }
