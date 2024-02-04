@@ -1,0 +1,9 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: tgb-report-generator
+spec:
+  serviceRef:
+    name: svc-report-generator
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-report-generator/63b38edd812dd1e9"

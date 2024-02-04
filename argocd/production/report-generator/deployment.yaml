@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: report-generator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: report-generator
+  template:
+    metadata:
+      labels:
+        app: report-generator
+    spec:
+      serviceAccountName: sa-report-generator
+      containers:
+      - name: report-generator
+        image: 476209828715.dkr.ecr.eu-west-1.amazonaws.com/org-ofirdassa9_devops-project-server:report-generator-latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PROJECT_NAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-report-generator
+              key: PROJECT_NAME
+        - name: JWT_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-report-generator
+              key: JWT_SECRET_KEY
+        - name: DB_CONN_STRING
+          valueFrom:
+            secretKeyRef:
+              name: secret-report-generator
+              key: DB_CONN_STRING
