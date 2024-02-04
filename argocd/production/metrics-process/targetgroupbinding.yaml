@@ -1,0 +1,9 @@
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: tgb-metrics-process
+spec:
+  serviceRef:
+    name: svc-metrics-process
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-metrics-process/e637255d82e591c7"

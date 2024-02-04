@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: metrics-process
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/org-ofirdassa9/devops-project-infra.git'
+    path: argocd/production/metrics-process
+    targetRevision: HEAD
+  destination:
+    namespace: hms
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
