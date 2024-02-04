@@ -30,3 +30,14 @@ spec:
     name: prometheus-grafana-kube-pr-prometheus
     port: 9090
   targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-prometheus/0772237812cc22c0"
+---
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  serviceRef:
+    name: argocd-server
+    port: 80
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-argocd/71c1b0131df4db02"
