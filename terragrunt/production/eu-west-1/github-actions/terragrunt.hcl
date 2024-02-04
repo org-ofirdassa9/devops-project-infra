@@ -8,5 +8,5 @@ include "root" {
 }
 
 inputs =  {
-  subjects = ["org-ofirdassa9/devops-project-client:*", "org-ofirdassa9/devops-project-server:*"]
+  subjects = ["org-ofirdassa9/devops-project-client:*", "org-ofirdassa9/devops-project-server:*", "org-ofirdassa9/devops-project-infra:*"]
 }
