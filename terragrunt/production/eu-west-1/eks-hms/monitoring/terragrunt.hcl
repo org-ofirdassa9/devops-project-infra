@@ -36,6 +36,10 @@ dependency "eks" {
   }
 }
 
+dependency "aws-alb-ingress-controller" {
+  config_path = "../aws-alb-ingress-controller"
+}
+
 inputs = {
     environment = include.env.locals.environment
     vpc_id = dependency.vpc.outputs.vpc_id
