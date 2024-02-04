@@ -4,7 +4,7 @@ resource "aws_iam_role" "gh_actions" {
 }
 
 resource "aws_iam_policy" "ecr_push" {
-  policy = file("./ecr-push.json")
+  policy = file("./ecr-full.json")
   name   = "policy-github-actions-ecr-push"
 }
 
