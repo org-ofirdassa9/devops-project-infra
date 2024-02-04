@@ -1,6 +1,6 @@
 resource "aws_lb_listener_rule" "alert_manager" {
   listener_arn = var.https_listener_arn
-  priority     = 49990
+  # priority     = 49990
 
   action {
     type             = "forward"
@@ -16,7 +16,7 @@ resource "aws_lb_listener_rule" "alert_manager" {
 
 resource "aws_lb_listener_rule" "prometheus" {
   listener_arn = var.https_listener_arn
-  priority     = 49989
+  # priority     = 49989
 
   action {
     type             = "forward"
@@ -32,7 +32,7 @@ resource "aws_lb_listener_rule" "prometheus" {
 
 resource "aws_lb_listener_rule" "grafana" {
   listener_arn = var.https_listener_arn
-  priority     = 49988
+  # priority     = 49988
 
   action {
     type             = "forward"
