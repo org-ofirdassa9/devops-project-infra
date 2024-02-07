@@ -1,7 +1,7 @@
 version: 0.1
 resource_usage:
   module.eks.module.eks_managed_node_group["one"].aws_eks_node_group.this[0]:
-    instances: 2 # Number of instances in the EKS node group.
+    instances: 3 # Number of instances in the EKS node group.
   aws_lb.this:
     rule_evaluations: 10 # The product of number of rules processed by the load balancer and the request rate.
   aws_wafv2_web_acl.this:
