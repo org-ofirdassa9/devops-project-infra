@@ -6,4 +6,4 @@ spec:
   serviceRef:
     name: svc-metrics-process
     port: 80
-  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-metrics-process/e637255d82e591c7"
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-metrics-process/12799e716d88b826"

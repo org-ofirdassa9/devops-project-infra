@@ -6,4 +6,4 @@ spec:
   serviceRef:
     name: svc-report-generator
     port: 80
-  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-report-generator/63b38edd812dd1e9"
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-report-generator/45cfe6cc3fac73fb"

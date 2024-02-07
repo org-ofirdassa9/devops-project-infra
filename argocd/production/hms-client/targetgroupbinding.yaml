@@ -6,4 +6,4 @@ spec:
   serviceRef:
     name: svc-hms-client
     port: 80
-  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-fallback/c558c0455343ee01"
+  targetGroupARN: "arn:aws:elasticloadbalancing:eu-west-1:476209828715:targetgroup/tg-production-fallback/d302b94dfa423dbf"
