@@ -6,8 +6,8 @@ resource "aws_lb_target_group" "argocd" {
   vpc_id      = var.vpc_id
 
   health_check {
-    path                = "/"
-    port                = 80
+    path                = "/healthz"
+    port                = 8080
     protocol            = "HTTP"
     healthy_threshold   = 3
     unhealthy_threshold = 3
