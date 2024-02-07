@@ -23,7 +23,7 @@ resource "aws_lb_target_group" "prometheus" {
   vpc_id      = var.vpc_id
 
   health_check {
-    path                = "/"
+    path                = "/-/healthy"
     port                = 9090
     protocol            = "HTTP"
     healthy_threshold   = 3
@@ -40,8 +40,8 @@ resource "aws_lb_target_group" "grafana" {
   vpc_id      = var.vpc_id
 
   health_check {
-    path                = "/"
-    port                = 80
+    path                = "/healthz"
+    port                = 3000
     protocol            = "HTTP"
     healthy_threshold   = 3
     unhealthy_threshold = 3
