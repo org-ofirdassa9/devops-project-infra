@@ -1,7 +1,7 @@
 
-# Infrastructure Setup for AWS EKS Cluster with Terraform and Helm
+# Infrastructure Setup for AWS EKS Cluster with OpenTofu and Helm
 
-This repository contains Terraform, Terragrunt and Helm configurations to set up an AWS EKS (Elastic Kubernetes Service) cluster along with various supporting components.
+This repository contains OpenTofu, Terragrunt and ArgoCD configurations to set up an AWS EKS (Elastic Kubernetes Service) cluster along with various supporting components.
 
 ## AWS Console User Configuration
 
@@ -15,9 +15,9 @@ In `terragrunt/production/eu-west-1/aws-alb/terragrunt.hcl`, update the `domains
 
 In `terragrunt/production/eu-west-1/aws-acm/terragrunt.hcl`, update the `domain_name` to your Route 53 domain. This is necessary to generate a wildcard certificate for the domain.
 
-## Terraform Setup
+## OpenTofu Setup
 
-Navigate to the `terragrunt/production` directory and run the following commands to initialize and apply the Terraform configurations:
+Navigate to the `terragrunt/production` directory and run the following commands to initialize and apply the OpenTofu configurations:
 
 ```bash
 terragrunt run-all init
@@ -26,9 +26,9 @@ terragrunt run-all apply
 
 ## Helm Chart Deployment
 
-After Terraform setup, switch to the EKS cluster config with `eks update-kubeconfig --name eks-<region>-<environment>-<name>` and perform the following steps:
+After OpenTofu setup, switch to the EKS cluster config with `aws eks update-kubeconfig --name eks-<region>-<environment>-<name>` and perform the following steps:
 
-1. Take the ARN of the IAM role for the grafana service-account (role-<cluster_name>-grafana) to `charts/kube-prometheus-stack/values.yaml`.
+<!-- 1. Take the ARN of the IAM role for the grafana service-account (role-<cluster_name>-grafana) to `charts/kube-prometheus-stack/values.yaml`.
 
 2. Install the Helm chart for Prometheus and Grafana:
 
@@ -42,7 +42,7 @@ After Terraform setup, switch to the EKS cluster config with `eks update-kubecon
 
    ```bash
    helm upgrade -i loki -n monitoring grafana/loki-stack --set loki.image.tag=2.9.3
-   ```
+   ``` -->
 
 5. Log in to Grafana:
 
@@ -60,18 +60,14 @@ After Terraform setup, switch to the EKS cluster config with `eks update-kubecon
    - Set your default region
    - RDS Dashboard ID: 707
 
-8. `helm repo add external-secrets https://charts.external-secrets.io`
-   `helm upgrade -i -n external-secrets --create-namespace external-secrets external-secrets/external-secrets`
-
-9. Add your AWS access key and secret key to `argocd/production/secret-store.yaml` and apply it
+<!-- 8. `helm repo add external-secrets https://charts.external-secrets.io`
+   `helm upgrade -i -n external-secrets --create-namespace external-secrets external-secrets/external-secrets` -->
 
 8. Log in to ArgoCD and set up this repo as a repository inside.
     
     - Username: admin
     - Password: `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d` 
     
-9. Setup this repo in argo repositories
-
 10. Take the ARN of the fallback and set it in `argocd/production/hms-client/targetgroupbinding.yaml`
 
 11. Take the ARN of the backend services and set them in `argocd/production/<backend_service_name>/targetgroupbinding.yaml`
@@ -79,10 +75,21 @@ After Terraform setup, switch to the EKS cluster config with `eks update-kubecon
 12. git push argocd/production to update the repo
     Make sure to not commit your secret-store.yaml since it has your AWS credentials!
 
+13. MANUALLY create secrets for the backend services in AWS Secrets manager `/eks/<environment>/<service-name>`:
+    each should have 3 secrets:
+    - `PROJECT_NAME` ex: Users Service
+    - `JWT_SECRET_KEY` ex: your-secret-key
+    - `DB_CONN_STRING` ex: postgresql://<pg_username>:<pg_password>@<pg_endpoint>/<db_name>
+
 14. run `kubectl apply -f argocd/production/hms-client-application.yaml`
 
-15. run `kubectl apply -f argocd/production/<backend_service_name>-application.yaml`
+9. Add your AWS access key and secret key in base64 format to `argocd/production/secret-store.yaml` and apply it
 
+15. run `kubectl apply -f argocd/production/users-service-application.yaml`
+
+16. run `kubectl apply -f argocd/production/metrics-process-application.yaml`
+
+17. run `kubectl apply -f argocd/production/report-generator-application.yaml`
 ## Infracost Analysis
 
 Generated cost analysis by Infracost:
