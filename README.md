@@ -28,68 +28,50 @@ terragrunt run-all apply
 
 After OpenTofu setup, switch to the EKS cluster config with `aws eks update-kubeconfig --name eks-<region>-<environment>-<name>` and perform the following steps:
 
-<!-- 1. Take the ARN of the IAM role for the grafana service-account (role-<cluster_name>-grafana) to `charts/kube-prometheus-stack/values.yaml`.
-
-2. Install the Helm chart for Prometheus and Grafana:
-
-   ```bash
-   helm upgrade -i prometheus-grafana prometheus-community/kube-prometheus-stack -n monitoring --create-namespace -f charts/kube-prometheus-stack/values.yaml
-   ```
-
-3. Take the monitoring target group ARNs and ArgoCD target group ARN to `argocd/targetgroupbinding.yaml` and apply it.
-
-4. Install the Helm chart for Loki:
-
-   ```bash
-   helm upgrade -i loki -n monitoring grafana/loki-stack --set loki.image.tag=2.9.3
-   ``` -->
-
-5. Log in to Grafana:
+1. Log in to Grafana:
 
    - Username: admin
    - Password: prom-operator
 
-6. Add Loki datasource in Grafana:
+2. Add Loki datasource in Grafana:
 
    - URL: http://loki:3100
    - Loki dashboard ID: 15141
 
-7. Add CloudWatch datasource in Grafana:
+3. Add CloudWatch datasource in Grafana:
 
    - Authentication Provider: AWS SDK Default
    - Set your default region
    - RDS Dashboard ID: 707
 
-<!-- 8. `helm repo add external-secrets https://charts.external-secrets.io`
-   `helm upgrade -i -n external-secrets --create-namespace external-secrets external-secrets/external-secrets` -->
-
-8. Log in to ArgoCD and set up this repo as a repository inside.
+4. Log in to ArgoCD and set up this repo as a repository inside.
     
     - Username: admin
     - Password: `kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d` 
     
-10. Take the ARN of the fallback and set it in `argocd/production/hms-client/targetgroupbinding.yaml`
+5. Take the ARN of the fallback and set it in `argocd/production/hms-client/targetgroupbinding.yaml`
 
-11. Take the ARN of the backend services and set them in `argocd/production/<backend_service_name>/targetgroupbinding.yaml`
+6. Take the ARN of the backend services and set them in `argocd/production/<backend_service_name>/targetgroupbinding.yaml`
 
-12. git push argocd/production to update the repo
+7. git push argocd/production to update the repo
     Make sure to not commit your secret-store.yaml since it has your AWS credentials!
 
-13. MANUALLY create secrets for the backend services in AWS Secrets manager `/eks/<environment>/<service-name>`:
+8. MANUALLY create secrets for the backend services in AWS Secrets manager `/eks/<environment>/<service-name>`:
     each should have 3 secrets:
     - `PROJECT_NAME` ex: Users Service
     - `JWT_SECRET_KEY` ex: your-secret-key
     - `DB_CONN_STRING` ex: postgresql://<pg_username>:<pg_password>@<pg_endpoint>/<db_name>
 
-14. run `kubectl apply -f argocd/production/hms-client-application.yaml`
+9. run `kubectl apply -f argocd/production/hms-client-application.yaml`
 
-9. Add your AWS access key and secret key in base64 format to `argocd/production/secret-store.yaml` and apply it
+10. Add your AWS access key and secret key in base64 format to `argocd/production/secret-store.yaml` and apply it
 
-15. run `kubectl apply -f argocd/production/users-service-application.yaml`
+11. run `kubectl apply -f argocd/production/users-service-application.yaml`
 
-16. run `kubectl apply -f argocd/production/metrics-process-application.yaml`
+12. run `kubectl apply -f argocd/production/metrics-process-application.yaml`
 
-17. run `kubectl apply -f argocd/production/report-generator-application.yaml`
+13. run `kubectl apply -f argocd/production/report-generator-application.yaml`
+
 ## Infracost Analysis
 
 Generated cost analysis by Infracost:
@@ -103,6 +85,7 @@ Generated cost analysis by Infracost:
 ┃ org-ofirdassa9/devops-project-i...ction/eu-west-1/eks-hms/argocd ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...hms/aws-alb-ingress-controller ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...oduction/eu-west-1/eks-hms/eks ┃ $137         ┃
+┃ org-ofirdassa9/devops-project-i...est-1/eks-hms/external-secrets ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...west-1/eks-hms/metrics-process ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...n/eu-west-1/eks-hms/monitoring ┃ $0.00        ┃
 ┃ org-ofirdassa9/devops-project-i...est-1/eks-hms/report-generator ┃ $0.00        ┃
