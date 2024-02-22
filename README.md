@@ -1,3 +1,27 @@
+<p align="center">
+  <img src="https://cdn-icons-png.flaticon.com/512/6295/6295417.png" width="100" />
+</p>
+<p align="center">
+    <h1 align="center">DEVOPS-PROJECT-INFRA</h1>
+</p>
+<p align="center">
+    <em>Automating AWS Infrastructure for Enhanced DevOps Efficiency</em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/github/last-commit/org-ofirdassa9/devops-project-infra?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/org-ofirdassa9/devops-project-infra?style=flat&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/org-ofirdassa9/devops-project-infra?style=flat&color=0080ff" alt="repo-language-count">
+<p>
+<p align="center">
+		<em>Developed with the software and tools below.</em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/badge/YAML-CB171E.svg?style=flat&logo=YAML&logoColor=white" alt="YAML">
+	<img src="https://img.shields.io/badge/Terraform-7B42BC.svg?style=flat&logo=Terraform&logoColor=white" alt="Terraform">
+	<img src="https://img.shields.io/badge/HCL-006BB6.svg?style=flat&logo=HCL&logoColor=white" alt="HCL">
+</p>
+<hr>
+
 
 # Infrastructure Setup for AWS EKS Cluster with OpenTofu and Helm
 
@@ -24,7 +48,7 @@ terragrunt run-all init
 terragrunt run-all apply
 ```
 
-## Helm Chart Deployment
+## HMS Frontend & Backend deployment + monitoring 
 
 After OpenTofu setup, switch to the EKS cluster config with `aws eks update-kubeconfig --name eks-<region>-<environment>-<name>` and perform the following steps:
 
